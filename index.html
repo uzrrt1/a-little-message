@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#100b12">
+<title>Glad I met you ♡</title>
+<style>
+:root{--bg:#100b12;--pink:#ff7eaa;--hot:#ff4f87;--cream:#fff5f4;--muted:#cda9b6}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:var(--bg);color:var(--cream);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+body{min-height:100svh;overflow-x:hidden;background:radial-gradient(circle at 50% 40%,#351322 0,transparent 34rem),linear-gradient(180deg,#100b12,#08070b)}
+button{font:inherit}
+.stage{position:relative;min-height:100svh;display:grid;place-items:center;overflow:hidden;padding:28px 18px}
+.glow{position:fixed;left:50%;bottom:3%;width:min(700px,95vw);height:150px;transform:translateX(-50%);background:radial-gradient(ellipse,#ff367b3b,transparent 70%);filter:blur(22px);pointer-events:none}
+.stars{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+.star{position:absolute;color:#ff9cbb;opacity:0;animation:twinkle var(--dur) ease-in-out infinite;animation-delay:var(--delay);font-size:var(--size)}
+@keyframes twinkle{0%,100%{opacity:.12;transform:scale(.7) rotate(0)}50%{opacity:.8;transform:scale(1.15) rotate(12deg)}}
+.intro{position:relative;z-index:4;text-align:center;width:min(600px,100%);transition:opacity .6s ease,transform .6s ease}
+.intro.hide{opacity:0;transform:translateY(15px) scale(.96);pointer-events:none;position:absolute}
+.eyebrow{font-size:.7rem;text-transform:uppercase;letter-spacing:.24em;color:var(--pink);font-weight:700}
+h1{font-size:clamp(2.6rem,8vw,5.5rem);line-height:1.02;letter-spacing:-.05em;margin:20px 0 15px;text-shadow:0 0 28px #ff4f8755}
+.script{font-family:"Segoe Print","Comic Sans MS",cursive;color:#ffb3cb;font-size:clamp(1.15rem,3vw,1.5rem)}
+.log{width:min(510px,94%);margin:28px auto 0;text-align:left;font:clamp(.7rem,2vw,.82rem)/1.9 ui-monospace,SFMono-Regular,Consolas,monospace;color:#f38eaf;background:#1b101a99;border:1px solid #ff80aa2e;border-radius:13px;padding:15px 18px}
+.log div{opacity:0;transform:translateY(7px);animation:lineIn .45s ease forwards}
+.log div:nth-child(2){animation-delay:.35s}.log div:nth-child(3){animation-delay:.7s}.log div:nth-child(4){animation-delay:1.05s}
+@keyframes lineIn{to{opacity:1;transform:translateY(0)}}
+.button{margin-top:23px;border:1px solid #ff9dbd55;border-radius:999px;padding:13px 23px;color:white;background:linear-gradient(135deg,#ff5d94,#b92c62);box-shadow:0 10px 32px #ff2f753d;cursor:pointer;font-weight:750;transition:transform .2s,filter .2s}
+.button:hover{transform:translateY(-2px);filter:brightness(1.08)}
+.heart-wrap{position:absolute;width:min(92vw,740px);aspect-ratio:1/.88;opacity:0;pointer-events:none;transform-style:preserve-3d}
+.heart-wrap.show{opacity:1;animation:heartAppear 1s ease forwards,beat 2.1s ease-in-out infinite 1s}
+@keyframes heartAppear{from{transform:scale(.7) rotateX(15deg);filter:blur(7px)}to{transform:scale(1);filter:blur(0)}}
+@keyframes beat{0%,100%{scale:1}13%{scale:1.025}25%{scale:1}39%{scale:1.018}65%{scale:1}}
+.heart-word{position:absolute;left:calc(var(--x)*1%);top:calc(var(--y)*1%);font:clamp(7px,1.3vw,13px) ui-monospace,Consolas,monospace;white-space:nowrap;color:hsl(var(--hue),100%,var(--light));text-shadow:0 0 7px #ff4f87d9,0 0 18px #ff4f8755;opacity:0;transform:translate(-50%,-50%) scale(.2) rotate(var(--rot));animation:wordIn .7s cubic-bezier(.2,.9,.2,1.15) forwards;animation-delay:calc(var(--delay)*1ms)}
+@keyframes wordIn{to{opacity:var(--opacity);transform:translate(-50%,-50%) scale(1) rotate(var(--rot))}}
+.center-text{position:absolute;inset:0;display:grid;place-items:center;text-align:center;font-size:clamp(2rem,7vw,4.4rem);font-weight:950;line-height:1.05;color:white;text-shadow:0 0 22px #ffffff66,0 0 45px #ff2d7599;opacity:0;animation:centerIn .8s ease forwards 1s;pointer-events:none}
+@keyframes centerIn{to{opacity:1;transform:scale(1)}}
+.after{display:none;position:relative;z-index:5;width:min(660px,100%);margin:25px auto 0;animation:rise .8s ease both}
+.after.show{display:block}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.note{position:relative;border:1px solid #ffd1df38;border-radius:22px;padding:clamp(22px,5vw,38px);background:linear-gradient(145deg,#24131fef,#17101af2);box-shadow:0 20px 70px #0006;backdrop-filter:blur(8px)}
+.note:before{content:"♡";position:absolute;right:20px;top:12px;color:#ff91b5;font-size:1.4rem}
+.note h2{font-size:clamp(1.8rem,5vw,2.6rem);font-weight:600;margin:0 0 16px;color:#ffb3cb}
+.note p{color:#f8e8ee;line-height:1.8;margin:0 0 15px}
+.note p:last-of-type{margin-bottom:0}
+.catline{display:flex;justify-content:center;align-items:center;gap:12px;margin:20px 0 0;color:#ffb3cb;font-family:"Segoe Print","Comic Sans MS",cursive}
+.cat{font-size:2.1rem;display:inline-block;animation:catBounce 2.5s ease-in-out infinite}
+.cat:nth-child(2){animation-delay:.35s}
+@keyframes catBounce{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-7px) rotate(4deg)}}
+.smallprint{text-align:center;color:#b891a1;font-size:.8rem;margin:16px 0 0}
+.replay{display:block;margin:20px auto 0}
+@media(max-width:520px){.heart-wrap{width:108vw}.heart-word{font-size:7px}.stage{padding:24px 15px}.log{padding:12px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="stars" id="stars" aria-hidden="true"></div>
+<main class="stage" id="stage">
+  <section class="intro" id="intro">
+    <div class="eyebrow">a small message, made with care</div>
+    <h1>A little something<br>for you <span style="color:#ff7eaa">♡</span></h1>
+    <p class="script">No pressure. Just a few honest words.</p>
+    <div class="log" aria-label="Message loading">
+      <div>[note] putting my thoughts in order...</div>
+      <div>[memory] keeping the good moments close...</div>
+      <div>[honesty] no big promises, no expectations...</div>
+      <div>[ready] a little message is waiting ♡</div>
+    </div>
+    <button class="button" id="startBtn">OPEN THE MESSAGE ♡</button>
+  </section>
+  <section class="heart-wrap" id="heart" aria-hidden="true"></section>
+  <section class="after" id="after">
+    <article class="note">
+      <h2>A little note for you</h2>
+      <p>I just wanted to write this because I don’t think I explained myself very well when we spoke. I was panicking, and I wish I’d been calmer.</p>
+      <p>I really liked getting to know you. I looked forward to talking to you, and spending time with you started to mean a lot to me. I was excited about where things might go, and the feelings I had for you were genuine.</p>
+      <p>About the password, I understand why seeing my ex’s name there felt bad. It was an old password I’d kept using out of habit, and I should’ve changed it a long time ago. I honestly stopped thinking about the name, but I can see how it looked from your side. That was careless of me, and I’m sorry it made you uncomfortable.</p>
+      <p>I’m not saying this to argue with how you feel or to make you give me another chance. You’re allowed to feel how you feel, and I respect what you told me.</p>
+      <p>I just didn’t want you to think I was holding on to my ex, because that isn’t what the password meant to me. I wish I’d thought to change it sooner, and I wish I’d explained it better in the moment.</p>
+      <p>I’m glad I got to know you, even if things didn’t turn out the way I hoped. You made me happy, and I’ll remember that. I genuinely wish you good things.</p>
+      <p style="color:#ffb3cb;font-family:'Segoe Print','Comic Sans MS',cursive;font-size:1.2rem">Take care ♡</p>
+      <div class="catline"><span class="cat">🐈</span><span>♡</span><span class="cat">🐈‍⬛</span></div>
+    </article>
+    <p class="smallprint">You don't owe me a reply. I just wanted to say this respectfully.</p>
+    <button class="button replay" id="replayBtn">SEE THE HEART AGAIN ↻</button>
+  </section>
+  <div class="glow"></div>
+</main>
+<script>
+const heart=document.getElementById("heart"),intro=document.getElementById("intro"),after=document.getElementById("after");
+const words=["glad we met","thank you","take care","good memories","♡","be happy","I meant it"];
+const points=[],step=.11;
+for(let y=1.35;y>=-1.25;y-=step){for(let x=-1.45;x<=1.45;x+=step){const v=Math.pow(x*x+y*y-1,3)-x*x*Math.pow(y,3);if(v<=0){points.push({x:50+x*31,y:53-y*35,boost:1-Math.min(1,Math.hypot(x,y)/1.55)});}}}
+function makeHeart(){
+ const frag=document.createDocumentFragment();
+ points.forEach((p,i)=>{const s=document.createElement("span");s.className="heart-word";s.textContent=words[(i+Math.floor(p.x))%words.length];
+ s.style.setProperty("--x",p.x.toFixed(2));s.style.setProperty("--y",p.y.toFixed(2));s.style.setProperty("--delay",Math.round(Math.random()*850+p.y*3));
+ s.style.setProperty("--hue",(334+Math.random()*20).toFixed(1));s.style.setProperty("--light",(53+p.boost*30+Math.random()*6).toFixed(1)+"%");
+ s.style.setProperty("--opacity",(0.58+p.boost*.4).toFixed(2));s.style.setProperty("--rot",(Math.random()*8-4).toFixed(1)+"deg");frag.appendChild(s);});
+ const center=document.createElement("div");center.className="center-text";center.innerHTML="glad I<br>met you. ♡";frag.appendChild(center);
+ heart.innerHTML="";heart.appendChild(frag);
+}
+function start(){makeHeart();intro.classList.add("hide");heart.classList.add("show");heart.style.pointerEvents="none";setTimeout(()=>{after.classList.add("show");after.scrollIntoView({behavior:"smooth",block:"center"});},2400);}
+document.getElementById("startBtn").addEventListener("click",start);
+document.getElementById("replayBtn").addEventListener("click",()=>{after.classList.remove("show");heart.classList.remove("show");intro.classList.remove("hide");heart.innerHTML="";window.scrollTo({top:0,behavior:"smooth"});});
+const stars=document.getElementById("stars");
+for(let i=0;i<38;i++){const s=document.createElement("span");s.className="star";s.textContent=Math.random()>.55?"✦":"·";s.style.left=(Math.random()*100)+"%";s.style.top=(Math.random()*100)+"%";s.style.setProperty("--dur",(2+Math.random()*4)+"s");s.style.setProperty("--delay",(-Math.random()*5)+"s");s.style.setProperty("--size",(8+Math.random()*15)+"px");stars.appendChild(s);}
+document.addEventListener("keydown",e=>{if((e.key==="Enter"||e.key===" ")&&document.activeElement===document.body&&!intro.classList.contains("hide")){e.preventDefault();start();}});
+window.addEventListener("pointermove",e=>{if(!heart.classList.contains("show"))return;const x=(e.clientX/innerWidth-.5)*7,y=(e.clientY/innerHeight-.5)*-5;heart.style.transform=`rotateX(${y}deg) rotateY(${x}deg)`;});
+</script>
+</body>
+</html>
